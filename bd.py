@@ -57,6 +57,7 @@ def create_tables():
     database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias])
 
 def adicionar_usuario(request)->[Usuario]:
+    '''armazena um usuario no banco de dados'''
     usuario = Usuario()
     usuario.nome = request.form['nome']
     usuario.email = request.form['email']
