@@ -44,6 +44,8 @@ class Avaliacao(ModelBase):
 class Rota(ModelBase):
     cidade_origem = CharField()
     cidade_destino = CharField()
+    preco = FloatField(default=0.0)
+    data = DateTimeField()
     usuario_ofertante = ForeignKeyField(Usuario)
 
 class CidadesIntermediarias(ModelBase):
