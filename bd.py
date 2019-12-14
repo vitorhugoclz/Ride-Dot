@@ -44,8 +44,6 @@ class Avaliacao(ModelBase):
 class Rota(ModelBase):
     cidade_origem = CharField()
     cidade_destino = CharField()
-    preco = FloatField(default=0.0)
-    data = DateTimeField()
     usuario_ofertante = ForeignKeyField(Usuario)
 
 class CidadesIntermediarias(ModelBase):
@@ -58,6 +56,18 @@ def create_tables():
     database.connect()
     database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias])
 
+def adicionar_usuario(request)->[Usuario]:
+    usuario = Usuario()
+    usuario.nome = request.form['nome']
+    usuario.email = request.form['email']
+    usuario.nome_usuario = request.form['nomeUsuario']
+    usuario.senha = request.form['senha']
+    usuario.cpf = request.form['cpf']
+    usuario.numero_telefone = request.form['numero_telefone']
+    usuario.foto = request.form['foto']
+    usuario.media_avaliacao = request.form['media_avaliacao']
+    usuario.save()
+    return usuario
 
 if __name__ == '__main__':
     """Quando esse arquivo for executado como main será criada as tabelas de banco de dados"""
