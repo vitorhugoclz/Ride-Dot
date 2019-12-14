@@ -1,4 +1,5 @@
 import os
+import populate_db
 from peewee import SqliteDatabase, Model, CharField, IntegerField, ForeignKeyField, DateTimeField, DateField, \
     DecimalField, FloatField
 
@@ -24,17 +25,18 @@ class Usuario(ModelBase):
 
     """Classe para persistencia de um usuario genérico"""
     nome = CharField()
-    email = CharField()
-    nomeUsuario = CharField()
-    foto = CharField(null=True)
+    email = CharField(unique=True)
+    nome_usuario = CharField(unique=True)
+    foto = CharField(null=True, default=None)
     senha = CharField()
-    cpf = CharField()
+    cpf = CharField(unique=True)
     numero_telefone = CharField(null=True)
     media_avaliacao = FloatField(default=0.0)
 
+
 class Avaliacao(ModelBase):
     nota = FloatField()
-    comentario = CharField()
+    comentario = CharField(null=True, default=None)
     data = DateField()
     usuario_id = ForeignKeyField(Usuario)
 
@@ -42,7 +44,7 @@ class Avaliacao(ModelBase):
 class Rota(ModelBase):
     cidade_origem = CharField()
     cidade_destino = CharField()
-
+    usuario_ofertante = ForeignKeyField(Usuario)
 
 class CidadesIntermediarias(ModelBase):
     cidade = CharField()
@@ -77,3 +79,4 @@ if __name__ == '__main__':
     if existe_banco_dados():
         delete_banco_dados()
     create_tables()
+    populate_db.criar_informacoes()
