@@ -66,9 +66,9 @@ AVALIACAO = [{'nota': 2.5, 'comentario': 'gordo falante', 'data': '2019-12-14', 
 
              {'nota': 2.5, 'comentario': 'gordo chato do caraio', 'data': '2019-12-14', 'usuario_id': 1}]
 
-ROTA = [{'cidade_origem': 'alfenas', 'cidade_destino': 'tapiratiba', 'data':'2019-12-14 12:00:00', 'usuario_ofertante': 1},
-        {'cidade_origem': 'alfenas', 'cidade_destino': 'rio de janeiro', 'data':'2019-12-14 17:35:00','usuario_ofertante': 9},
-        {'cidade_origem': 'alfenas', 'cidade_destino': 'pouso alegre', 'data':'2019-12-14 17:35:00','usuario_ofertante': 6}]
+ROTA = [{'cidade_origem': 'alfenas', 'numero_vaga': 2, 'cidade_destino': 'tapiratiba', 'data':'2019-12-14 12:00:00', 'usuario_ofertante': 1},
+        {'cidade_origem': 'alfenas', 'numero_vaga': 3, 'cidade_destino': 'rio de janeiro', 'data':'2019-12-14 17:35:00','usuario_ofertante': 9},
+        {'cidade_origem': 'alfenas', 'numero_vaga': 1, 'cidade_destino': 'pouso alegre', 'data':'2019-12-14 17:35:00','usuario_ofertante': 6}]
 
 CIDADES_INTERMEDIARIAS = [{'cidade': 'guaxupe', 'rota_id': 1},
                           {'cidade': 'campos gerais', 'rota_id': 3}]
