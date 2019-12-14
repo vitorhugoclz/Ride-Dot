@@ -1,0 +1,4 @@
+#https://pypi.org/search/?q=peewee&o=
+peewee==3.13.1
+#https://pypi.org/search/?q=flask
+flask==1.1.1
