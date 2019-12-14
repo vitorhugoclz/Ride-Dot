@@ -26,11 +26,11 @@ class Usuario(ModelBase):
     nome = CharField()
     email = CharField()
     nomeUsuario = CharField()
-    foto = CharField()
+    foto = CharField(null=True)
     senha = CharField()
     cpf = CharField()
     numero_telefone = CharField(null=True)
-
+    media_avaliacao = FloatField(default=0.0)
 
 class Avaliacao(ModelBase):
     nota = FloatField()
