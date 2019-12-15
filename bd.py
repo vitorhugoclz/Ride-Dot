@@ -109,7 +109,6 @@ def adicionar_usuario(request:object)->Usuario:
 @database.atomic()
 def adicionar_rota(request:object)->Rota:
     '''' armazena uma rota no banco de dados '''
-    print("tentou inserir rota")
     rota = Rota()
     rota.cidade_destino = request.form['cidade_destino'].lower()
     rota.cidade_origem = request.form['cidade_origem'].lower()
