@@ -31,16 +31,12 @@ def rota_inserir():
 @app.route('/redireciona_busca_carona', methods=['POST'])
 def redireciona_busca_carona():
     dados = {}
-    print("redireciona_busca_carona")
     dados['url_form'] = url_for('rota_inserir')
     return render_template('buscar_carona.html')
 
 @app.route('/buscar_carona', methods=['POST'])
 def rota_buscar():
     data = buscar_carona(request)
-    print("passou por busca rota")
-    print(data[0].cidade_origem)
-    print(len(data))
     return render_template('buscar_carona.html', resultado=data)
 
 '''@app.route('/usuario/inserir', methods=['POST'])
