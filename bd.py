@@ -55,6 +55,11 @@ class CidadesIntermediarias(ModelBase):
     cidade = CharField()
     rota_id = ForeignKeyField(Rota)
 
+class BuscaCarona(ModelBase):
+    cidadeOrigem = CharField()
+    cidadeDestino = CharField()
+
+
 
 def create_tables():
     """cria as tabelas do banco de dados"""
@@ -116,6 +121,24 @@ def adicionar_rota(request:object)->Rota:
 # fim funcoes adicionar rota
 ##########################################################
 
+
+##########################################################
+# funcoes buscar carona
+##########################################################
+
+def buscar_carona(request:object)->BuscaCarona:
+    cidade_origem = request.form['cidade_origem']
+    cidade_destino = request.form['cidade_destino']
+
+    data = Rota.select().where(Rota.cidade_origem == cidade_origem and Rota.cidade_destino == cidade_destino)
+
+    return data
+
+
+##########################################################
+# fim funcoes buscar carona
+##########################################################
+
 if __name__ == '__main__':
     """Quando esse arquivo for executado como main será criada as tabelas de banco de dados"""
 
@@ -139,3 +162,4 @@ if __name__ == '__main__':
         delete_banco_dados()
     create_tables()
     populate_db.criar_informacoes()
+
