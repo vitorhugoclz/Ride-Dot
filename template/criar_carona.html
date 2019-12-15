@@ -9,34 +9,82 @@
     <body>
         <div class="container">
             <div class="page-header">
-                <h1> {{ titulo }} </h1>
+                <h1> RideDot </h1>
             </div>
 
             <form action="/rota_inserir" method="post">
             <fieldset>
-                <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
                     <label for="cidade_origem">Cidade de Origem</label>
-                    <input type="text" id="cidade_origem" name="cidade_origem" class="form-control">
+                    <input type="text" class="form-control" id="cidade_origem" name="cidade_origem" placeholder="Guarulhos" required>
                 </div>
-                <div class="form-group">
+                <div class="col-md-3 mb-3">
+                    <label for="estado_origem">Estado</label>
+                    <input type="text" class="form-control" id="estado_origem" name="estado_origem" placeholder="São Paulo" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="cep_origem">CEP</label>
+                    <input type="text" class="form-control" id="cep_origem" name="cep_origem" placeholder="00000-000">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
                     <label for="cidade_destino">Cidade de Destino</label>
-                    <input type="text" id="cidade_destino" name="cidade_destino" class="form-control">
+                    <input type="text" class="form-control" id="cidade_destino" name="cidade_destino" placeholder="Alfenas" required>
                 </div>
-                <div class="form-group">
-                    <label for="data_viagem">Data da viagem</label>
-                    <input type="date" id="data_viagem" name="data_viagem" class="form-control">
+                <div class="col-md-3 mb-3">
+                    <label for="estado_destino">Estado</label>
+                    <input type="text" class="form-control" id="estado_destino" name="estado_destino" placeholder="Minas Gerais" required>
                 </div>
-                <div class="form-group">
-                    <label for="horario_viagem">Horário da viagem</label>
-                    <input type="text" id="horario_viagem" name="horario_viagem" class="form-control">
+                <div class="col-md-3 mb-3">
+                    <label for="cep_destino">CEP</label>
+                    <input type="text" class="form-control" id="cep_destino" name="cep_destino" placeholder="00000-000">
                 </div>
-                <div class="form-group">
-                    <label for="preco_viagem">Preço da Viagem</label>
-                    <input type="number" id="preco_viagem" name="preco_viagem" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary btn-salvar">Criar carona</button>
-            </fieldset>
-            </form>
+            </div>
+            <div class="form-group">
+                <label for="data_viagem">Insira a data da viagem</label>
+                <input type="date" id="data_viagem" name="data_viagem" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="horario_viagem">Insira o horário da viagem</label>
+                <input type="text" id="horario_viagem" name="horario_viagem" class="form-control" placeholder="12:00" required>
+            </div>
+            <div class="form-group">
+                <label for="preco_viagem">Insira o preço da viagem</label>
+                <input type="text" id="preco_viagem" name="preco_viagem" class="form-control" placeholder="10,00" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Insira o telefone para contato</label>
+                <input type="text" id="telefone" name="telefone" class="form-control" placeholder="(00) 0000-0000" required>
+            </div>
+            <div class="form-group">
+                <select class="custom-select" for="numero_vagas" name="numero_vagas">
+                    <option selected>Escolha o número de vagas</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="3">9</option>
+                    <option value="4">10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Concordo com os termos e condições
+                    </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-salvar">Criar carona</button>
         </div>
+        </fieldset>
+        </form>
+    </div>
  </body>
 </html>
