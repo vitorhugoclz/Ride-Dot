@@ -10,7 +10,7 @@ usuario_logado = None
 def index():
     dados = {}
     dados['url_form'] = url_for('usuario_formulario')
-    return render_template('index.html', dados=dados)
+    return render_template('index.html')
 
 ##funcoes abaixo ainda nao integradas como nova pagina 
 @app.route('/usuario/formulario', methods=['POST'])
