@@ -39,6 +39,14 @@ def rota_buscar():
     data = buscar_carona(request)
     return render_template('buscar_carona.html', resultado=data)
 
+
+@app.route('/confirmar_inscricao/<int:id>')
+def salvar_inscricao(id):
+    id = int(id)
+    print(id)
+    return redirect(url_for('index'))
+
+
 '''@app.route('/usuario/inserir', methods=['POST'])
 def usuario_inserir():
     dados = {}
