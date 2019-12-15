@@ -137,6 +137,7 @@ def buscar_carona(request:object):
     return data
 
 def salvar_inscricao_rota(id:int):
+    '''comentario de inscricao'''
     data = Rota.select().where(Rota.id == id)
     print("chegou no BD")
     if data:
