@@ -1,11 +1,37 @@
-{% extends 'template.html' %}
-{% block conteudo %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>RideDot</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../static/css/fontAwesome.css">
+        <link rel="stylesheet" href="../static/css/hero-slider.css">
+        <link rel="stylesheet" href="../static/css/owl-carousel.css">
+        <link rel="stylesheet" href="../static/css/templatemo-style.css">
+        <link rel="stylesheet" href="../static/css/lightbox.css">
+        <link rel="stylesheet" href="../static/css/margem_form.css">
+
+        <script src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+
+<body>
+{% include 'header.html'%}
+<div class="parallax-content baner-content" id="busca_carona" >
     <div class="container">
         <form action="/buscar_carona" method="post">
             <fieldset>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="cidade_origem">Cidade de Origem</label>
+                        <label for="cidade_origem" style="color: #dddddd">Cidade de Origem</label>
                         <input type="text" class="form-control" id="cidade_origem" name="cidade_origem"
                                placeholder="Guarulhos" required>
                     </div>
@@ -13,26 +39,35 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="cidade_destino">Cidade de Destino</label>
+                        <label for="cidade_destino" style="color: #dddddd">Cidade de Destino</label>
                         <input type="text" class="form-control" id="cidade_destino" name="cidade_destino"
                                placeholder="Alfenas" required>
                     </div>
                 </div>
             </fieldset>
-             <button type="submit" class="btn btn-primary btn-salvar">Buscar Carona</button>
+            <br>
+            <br>
+             <div class="form-row">
+                    <span class="col-md-4 mb-3"></span>
+                    <button type="submit" class="btn btn-primary col-md-4 mb-2 btn-salvar">Buscar Carona</button>
+             </div>
         </form>
+        <br>
+        <br>
+        <br>
+        <br>
         {% if resultado %}
-            <div class="table-responsive">
+            <div class="table-responsive col-md-12">
                 <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                        <th>Inscrever</th>
-                        <th>cidade_origem</th>
-                        <th>cidade_destino</th>
-                        <th>numero_vaga</th>
-                        <th>data</th>
-                        <th>numero_telefone</th>
-                        <th>usuario_ofertante</th>
+                        <th style="color: #dddddd">Inscrever</th>
+                        <th style="color: #dddddd">cidade_origem</th>
+                        <th style="color: #dddddd">cidade_destino</th>
+                        <th style="color: #dddddd">numero_vaga</th>
+                        <th style="color: #dddddd">data</th>
+                        <th style="color: #dddddd">numero_telefone</th>
+                        <th style="color: #dddddd">usuario_ofertante</th>
                 </tr>
                 </thead>
                     <tbody>
@@ -62,5 +97,7 @@
             </div>
 {% endif %}
     </div>
-
-{% endblock %}
+</div>
+{% include 'template.html' %}
+</body>
+</html>
