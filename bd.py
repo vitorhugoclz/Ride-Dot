@@ -59,7 +59,25 @@ def create_tables():
     database.connect()
     database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias])
 
-def adicionar_usuario(request)->[Usuario]:
+##########################################################
+# Funao para verificar login
+##########################################################
+
+
+def verificar_login(request:object):
+    senha = str(request.form['senha'])
+    nome_usuario = str(request.form['nome_usuario'])
+    data = Usuario.select().where(Usuario.nome_usuario == nome_usuario)
+    if data:
+        if data[0].senha != senha:
+            data = None
+    return data
+
+##########################################################
+# Funcoes relacionados ao usuario
+##########################################################
+@database.atomic()
+def adicionar_usuario(request:object)->Usuario:
     '''armazena um usuario no banco de dados'''
     usuario = Usuario()
     usuario.nome = request.form['nome']
@@ -72,7 +90,9 @@ def adicionar_usuario(request)->[Usuario]:
     usuario.media_avaliacao = 0.0
     usuario.save()
     return usuario
-
+##########################################################
+# Fim das Funcoes relacionados ao usuario
+##########################################################
 if __name__ == '__main__':
     """Quando esse arquivo for executado como main será criada as tabelas de banco de dados"""
 

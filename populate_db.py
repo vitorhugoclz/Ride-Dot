@@ -20,7 +20,7 @@ def inserir_cidades_intermediarias(rows: list) -> None:
     bd.CidadesIntermediarias.insert_many(rows).execute()
 
 
-USUARIO = [{'id': 1, 'nome': 'vitor hugo', 'email': 'vitorhugoclz@email.com', 'nome_usuario': 'vitorhugoclz',
+USUARIO = [{'id': 1, 'nome': 'vitor hugo', 'email': 'vitorhugoclz@email.com', 'nome_usuario': 'vitor',
                 'senha': 'vitor', 'cpf': '999.999.999-99', 'numero_telefone': '19 999999999', 'media_avaliacao': 2.5},
 
             {'id': 2, 'nome': 'maria luiza', 'email': 'maria@email.com', 'nome_usuario': 'maria',
