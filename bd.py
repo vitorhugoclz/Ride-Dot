@@ -136,6 +136,11 @@ def buscar_carona(request:object):
 
     return data
 
+def salvar_inscricao_rota(id:int):
+    data = Rota.select().where(Rota.id == id)
+    if data:
+        if data.numero_vaga > 0:
+            data.numero_vaga = data.numero_vaga - 1
 
 ##########################################################
 # fim funcoes buscar carona

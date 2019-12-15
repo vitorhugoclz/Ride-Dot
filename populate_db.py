@@ -20,6 +20,10 @@ def inserir_cidades_intermediarias(rows: list) -> None:
     bd.CidadesIntermediarias.insert_many(rows).execute()
 
 
+def inserir_rota_usuario(rows: list) -> None:
+    bd.Rota_Usuario.insert_many(rows).execute()
+
+
 USUARIO = [{'id': 1, 'nome': 'vitor hugo', 'email': 'vitorhugoclz@email.com', 'nome_usuario': 'vitor',
                 'senha': 'vitor', 'cpf': '999.999.999-99', 'numero_telefone': '19 999999999', 'media_avaliacao': 2.5},
 
@@ -77,12 +81,18 @@ ROTA = [{'cidade_origem': 'alfenas', 'numero_vaga': 2, 'cidade_destino': 'tapira
 
 CIDADES_INTERMEDIARIAS = [{'cidade': 'guaxupe', 'rota_id': 1},
                           {'cidade': 'campos gerais', 'rota_id': 3}]
+ROTA_USUARIO = [{'usuario_id': 2, 'rota_id': 1},
+                {'usuario_id': 1, 'rota_id': 2},
+                {'usuario_id': 4, 'rota_id': 2},
+                {'usuario_id': 5, 'rota_id': 3}]
 
 def criar_informacoes():
     inserir_usuarios(USUARIO)
     inserir_avaliacoes(AVALIACAO)
     inserir_rota(ROTA)
     inserir_cidades_intermediarias(CIDADES_INTERMEDIARIAS)
+    inserir_rota_usuario(ROTA_USUARIO)
+
 
 if __name__ == '__main__':
     criar_informacoes()
