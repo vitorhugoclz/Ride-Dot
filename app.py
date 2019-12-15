@@ -8,10 +8,25 @@ Kazakhstan number one exporter of potassium"""
 usuario_logado = None
 @app.route('/')
 def index():
-    print(usuario_logado)
     dados = {}
-    dados['url_form'] = url_for('usuario_login')
-    return render_template('teste.html', dados=dados)
+    dados['url_form'] = url_for('usuario_formulario')
+    return render_template('index.html', dados=dados)
+
+##funcoes abaixo ainda nao integradas como nova pagina 
+@app.route('/usuario/formulario', methods=['POST'])
+def usuario_formulario():
+    dados = {}
+    dados['url_form'] = url_for('usuario_formulario')
+    return render_template('usuario_form.html', dados=dados)
+
+@app.route('/usuario/inserir', methods=['POST'])
+def usuario_inserir():
+    dados = {}
+    dados['url_form'] = url_for('usuario_inserir')
+    data = adicionar_usuario(request)
+    if data:
+        flash(f'Usuario: {data.nome} criado com sucesso')
+    return render_template('usuario_form.html', dados=dados)
 
 @app.route('/login', methods=['POST'])
 def usuario_login():
@@ -26,16 +41,6 @@ def usuario_login():
     else:
         print("nao logou")
         return render_template('usuario_form.html', dados=dados)
-
-
-@app.route('/usuario/inserir', methods=['POST'])
-def usuario_inserir():
-    dados = {}
-    dados['url_form'] = url_for('usuario_inserir')
-    data = adicionar_usuario(request)
-    if data:
-        flash(f'Usuario: {data.nome} criado com sucesso')
-    return render_template('usuario_form.html', dados=dados)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
