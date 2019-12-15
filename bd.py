@@ -114,8 +114,8 @@ def adicionar_rota(request:object)->Rota:
     rota.cidade_destino = request.form['cidade_destino'].lower()
     rota.cidade_origem = request.form['cidade_origem'].lower()
     rota.data = request.form['data']
-    rota.numero_telefone = request.form['numero_telefone']
-    rota.numero_vaga = request.form['numero_vaga']
+    rota.numero_telefone = request.form['telefone']
+    rota.numero_vaga = request.form['numero_vagas']
     rota.usuario_ofertante = 1
     rota.save()
     return rota
