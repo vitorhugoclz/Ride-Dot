@@ -110,8 +110,8 @@ def adicionar_rota(request:object)->Rota:
     '''' armazena uma rota no banco de dados '''
     print("tentou inserir rota")
     rota = Rota()
-    rota.cidade_destino = request.form['cidade_destino']
-    rota.cidade_origem = request.form['cidade_origem']
+    rota.cidade_destino = request.form['cidade_destino'].lower()
+    rota.cidade_origem = request.form['cidade_origem'].lower()
     rota.data = request.form['data']
     rota.numero_telefone = request.form['numero_telefone']
     rota.numero_vaga = request.form['numero_vaga']
@@ -127,9 +127,10 @@ def adicionar_rota(request:object)->Rota:
 # funcoes buscar carona
 ##########################################################
 
-def buscar_carona(request:object)->BuscaCarona:
-    cidade_origem = request.form['cidade_origem']
-    cidade_destino = request.form['cidade_destino']
+def buscar_carona(request:object):
+
+    cidade_origem = request.form['cidade_origem'].lower()
+    cidade_destino =  request.form['cidade_destino'].lower()
 
     data = Rota.select().where(Rota.cidade_origem == cidade_origem and Rota.cidade_destino == cidade_destino)
 
