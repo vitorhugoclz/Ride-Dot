@@ -21,6 +21,8 @@ class ModelBase(Model):  # classe modelo
         database = database
 
 
+
+
 class Usuario(ModelBase):
 
     """Classe para persistencia de um usuario genérico"""
@@ -93,6 +95,27 @@ def adicionar_usuario(request:object)->Usuario:
 ##########################################################
 # Fim das Funcoes relacionados ao usuario
 ##########################################################
+
+
+##########################################################
+# Funcoes adicionar rota
+##########################################################
+@database.atomic()
+def adicionar_rota(request:object)->Rota:
+    '''' armazena uma rota no banco de dados '''
+    rota = Rota()
+    rota.cidade_destino = request.form['cidade_destino']
+    rota.cidade_origem = request.form['cidade_origem']
+    rota.data = request.form['data']
+    rota.numero_telefone = request.form['numero_telefone']
+    rota.numero_vaga = request.form['numero_vaga']
+    rota.usuario_ofertante = request.form['usuario_ofertante']
+    rota.save()
+    return rota
+##########################################################
+# fim funcoes adicionar rota
+##########################################################
+
 if __name__ == '__main__':
     """Quando esse arquivo for executado como main será criada as tabelas de banco de dados"""
 
