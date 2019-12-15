@@ -26,7 +26,7 @@ def rota_inserir():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
     data = adicionar_rota(request)
-    return render_template('index.html', dados=dados)
+    return redirect('/')
 
 @app.route('/redireciona_busca_carona', methods=['POST'])
 def redireciona_busca_carona():
