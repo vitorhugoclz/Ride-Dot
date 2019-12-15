@@ -1,10 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'template.html' %}
+{% block conteudo %}
+    <div class="container">
+        <form action="/buscar_carona" method="post">
+            <fieldset>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cidade_origem">Cidade de Origem</label>
+                        <input type="text" class="form-control" id="cidade_origem" name="cidade_origem"
+                               placeholder="Guarulhos" required>
+                    </div>
 
-</body>
-</html>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cidade_destino">Cidade de Destino</label>
+                        <input type="text" class="form-control" id="cidade_destino" name="cidade_destino"
+                               placeholder="Alfenas" required>
+                    </div>
+                </div>
+            </fieldset>
+             <button type="submit" class="btn btn-primary btn-salvar">Buscar Carona</button>
+        </form>
+        {% if resultado %}
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                        <th>Inscrever</th>
+                        <th>cidade_origem</th>
+                        <th>cidade_destino</th>
+                        <th>numero_vaga</th>
+                        <th>data</th>
+                        <th>numero_telefone</th>
+                        <th>usuario_ofertante</th>
+                </tr>
+                </thead>
+                    <tbody>
+                    {% for iten in resultado %}
+                        <tr>
+                        <td>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-plus-square">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </td>
+                        <td>{{ iten.cidade_origem }}</td>
+                        <td>{{ iten.cidade_destino }}</td>
+                        <td>{{ iten.numero_vaga }}</td>
+                        <td>{{ iten.data }}</td>
+                        <td>{{ iten.numero_telefone }}</td>
+                        <td>{{ iten.usuario_ofertante }}</td>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+{% endif %}
+    </div>
+
+{% endblock %}
