@@ -1,15 +1,20 @@
 {% extends 'template.html' %}
+
+{% include 'header.html' %}
+
 {% block conteudo %}
-    <div class="parallax-content baner-content" id="home">
+    <div class="parallax-content baner-content" id="home" >
         <div class="container">
             <div class="text-content">
                 <h2><em>RideDot</em></h2>
                 <p>Caronas de confiança para o seu destino</p>
                 <div class="primary-white-button">
-                    <a href="#" class="scroll-link" data-id="about">Procurar Carona</a>
+                    <form action="{{ dados['url_form'] }}" method="post">
+                        <button type="submit" class="btn btn-primary btn-salvar">Oferecer carona</button>
+                    </form>
                 </div>
                 <div class="primary-white-button">
-                    <a href="#" class="scroll-link" data-id="about">Oferecer Carona</a>
+                    <a href="#" action="/redireciona_cria_carona" method="post">Oferecer Carona</a>
                 </div>
             </div>
         </div>
