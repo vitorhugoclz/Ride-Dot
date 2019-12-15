@@ -21,7 +21,7 @@ def inserir_cidades_intermediarias(rows: list) -> None:
 
 
 def inserir_rota_usuario(rows: list) -> None:
-    bd.Rota_Usuario.insert_many(rows).execute()
+    bd.RotaUsuario.insert_many(rows).execute()
 
 
 USUARIO = [{'id': 1, 'nome': 'vitor hugo', 'email': 'vitorhugoclz@email.com', 'nome_usuario': 'vitor',

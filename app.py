@@ -43,7 +43,7 @@ def rota_buscar():
 @app.route('/confirmar_inscricao/<int:id>')
 def salvar_inscricao(id):
     id = int(id)
-    print(id)
+    data = salvar_inscricao_rota(id)
     return redirect(url_for('index'))
 
 

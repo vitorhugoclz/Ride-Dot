@@ -55,16 +55,17 @@ class CidadesIntermediarias(ModelBase):
     cidade = CharField()
     rota_id = ForeignKeyField(Rota)
 
-class BuscaCarona(ModelBase):
-    cidadeOrigem = CharField()
-    cidadeDestino = CharField()
 
+class RotaUsuario(ModelBase):
+    usuario_id = ForeignKeyField(Usuario)
+    rota_id = ForeignKeyField(Rota)
+    vagas_pedidas = IntegerField(default=1)
 
 
 def create_tables():
     """cria as tabelas do banco de dados"""
     database.connect()
-    database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias])
+    database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias, RotaUsuario])
 
 ##########################################################
 # Funao para verificar login
@@ -138,9 +139,15 @@ def buscar_carona(request:object):
 
 def salvar_inscricao_rota(id:int):
     data = Rota.select().where(Rota.id == id)
+    print("chegou no BD")
     if data:
-        if data.numero_vaga > 0:
-            data.numero_vaga = data.numero_vaga - 1
+        if data[0].numero_vaga > 0 and data[0].numero_vaga >= 1:
+            data[0].numero_vaga = data[0].numero_vaga - 1
+            data[0].save()
+            rota_usuario = RotaUsuario()
+            rota_usuario.rota_id = id
+            rota_usuario.usuario_id = 9
+            rota_usuario.save()
 
 ##########################################################
 # fim funcoes buscar carona
