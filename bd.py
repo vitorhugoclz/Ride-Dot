@@ -108,13 +108,14 @@ def adicionar_usuario(request:object)->Usuario:
 @database.atomic()
 def adicionar_rota(request:object)->Rota:
     '''' armazena uma rota no banco de dados '''
+    print("tentou inserir rota")
     rota = Rota()
     rota.cidade_destino = request.form['cidade_destino']
     rota.cidade_origem = request.form['cidade_origem']
-    rota.data = request.form['data']
-    rota.numero_telefone = request.form['numero_telefone']
-    rota.numero_vaga = request.form['numero_vaga']
-    rota.usuario_ofertante = request.form['usuario_ofertante']
+    rota.data = '2019-12-14 12:00:00'
+    rota.numero_telefone = request.form['telefone']
+    rota.numero_vaga = request.form['numero_vagas']
+    rota.usuario_ofertante = 1
     rota.save()
     return rota
 ##########################################################
