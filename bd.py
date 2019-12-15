@@ -21,6 +21,8 @@ class ModelBase(Model):  # classe modelo
         database = database
 
 
+
+
 class Usuario(ModelBase):
 
     """Classe para persistencia de um usuario genérico"""
@@ -54,12 +56,36 @@ class CidadesIntermediarias(ModelBase):
     rota_id = ForeignKeyField(Rota)
 
 
+class RotaUsuario(ModelBase):
+    usuario_id = ForeignKeyField(Usuario)
+    rota_id = ForeignKeyField(Rota)
+    vagas_pedidas = IntegerField(default=1)
+
+
 def create_tables():
     """cria as tabelas do banco de dados"""
     database.connect()
-    database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias])
+    database.create_tables([Usuario, Avaliacao, Rota, CidadesIntermediarias, RotaUsuario])
 
-def adicionar_usuario(request)->[Usuario]:
+##########################################################
+# Funao para verificar login
+##########################################################
+
+
+def verificar_login(request:object):
+    senha = str(request.form['senha'])
+    nome_usuario = str(request.form['nome_usuario'])
+    data = Usuario.select().where(Usuario.nome_usuario == nome_usuario)
+    if data:
+        if data[0].senha != senha:
+            data = None
+    return data
+
+##########################################################
+# Funcoes relacionados ao usuario
+##########################################################
+@database.atomic()
+def adicionar_usuario(request:object)->Usuario:
     '''armazena um usuario no banco de dados'''
     usuario = Usuario()
     usuario.nome = request.form['nome']
@@ -72,6 +98,60 @@ def adicionar_usuario(request)->[Usuario]:
     usuario.media_avaliacao = 0.0
     usuario.save()
     return usuario
+##########################################################
+# Fim das Funcoes relacionados ao usuario
+##########################################################
+
+
+##########################################################
+# Funcoes adicionar rota
+##########################################################
+@database.atomic()
+def adicionar_rota(request:object)->Rota:
+    '''' armazena uma rota no banco de dados '''
+    print("tentou inserir rota")
+    rota = Rota()
+    rota.cidade_destino = request.form['cidade_destino'].lower()
+    rota.cidade_origem = request.form['cidade_origem'].lower()
+    rota.data = request.form['data']
+    rota.numero_telefone = request.form['numero_telefone']
+    rota.numero_vaga = request.form['numero_vaga']
+    rota.usuario_ofertante = 1
+    rota.save()
+    return rota
+##########################################################
+# fim funcoes adicionar rota
+##########################################################
+
+
+##########################################################
+# funcoes buscar carona
+##########################################################
+
+def buscar_carona(request:object):
+
+    cidade_origem = request.form['cidade_origem'].lower()
+    cidade_destino =  request.form['cidade_destino'].lower()
+
+    data = Rota.select().where(Rota.cidade_origem == cidade_origem and Rota.cidade_destino == cidade_destino)
+
+    return data
+
+def salvar_inscricao_rota(id:int):
+    data = Rota.select().where(Rota.id == id)
+    print("chegou no BD")
+    if data:
+        if data[0].numero_vaga > 0 and data[0].numero_vaga >= 1:
+            data[0].numero_vaga = data[0].numero_vaga - 1
+            data[0].save()
+            rota_usuario = RotaUsuario()
+            rota_usuario.rota_id = id
+            rota_usuario.usuario_id = 9
+            rota_usuario.save()
+
+##########################################################
+# fim funcoes buscar carona
+##########################################################
 
 if __name__ == '__main__':
     """Quando esse arquivo for executado como main será criada as tabelas de banco de dados"""
@@ -96,3 +176,4 @@ if __name__ == '__main__':
         delete_banco_dados()
     create_tables()
     populate_db.criar_informacoes()
+
