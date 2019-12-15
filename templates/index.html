@@ -14,7 +14,9 @@
                     </form>
                 </div>
                 <div class="primary-white-button">
-                    <a href="#" action="/redireciona_cria_carona" method="post">Oferecer Carona</a>
+                    <form action="{{ dados['url_buscar'] }}" method="post">
+                        <button type="submit" class="btn btn-primary btn-salvar">Buscar carona</button>
+                    </form>
                 </div>
             </div>
         </div>
