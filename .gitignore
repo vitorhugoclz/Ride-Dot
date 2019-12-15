@@ -1,2 +1,4 @@
 *.db
 .idea
+ride_dote.db-shm
+ride_dote.db-wal

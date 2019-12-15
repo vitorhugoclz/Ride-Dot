@@ -46,6 +46,7 @@ class Rota(ModelBase):
     cidade_destino = CharField()
     numero_vaga = IntegerField()
     data = DateTimeField()
+    numero_telefone = CharField()
     usuario_ofertante = ForeignKeyField(Usuario)
 
 class CidadesIntermediarias(ModelBase):
@@ -67,8 +68,8 @@ def adicionar_usuario(request)->[Usuario]:
     usuario.senha = request.form['senha']
     usuario.cpf = request.form['cpf']
     usuario.numero_telefone = request.form['numero_telefone']
-    usuario.foto = request.form['foto']
-    usuario.media_avaliacao = request.form['media_avaliacao']
+    usuario.foto = None
+    usuario.media_avaliacao = 0.0
     usuario.save()
     return usuario
 
