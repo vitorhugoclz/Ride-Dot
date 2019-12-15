@@ -10,20 +10,38 @@ usuario_logado = None
 def index():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
+    dados['url_buscar'] = url_for('redireciona_busca_carona')
     return render_template('index.html', dados=dados)
 
-##funcoes abaixo ainda nao integradas como nova pagina 
+
 @app.route('/redireciona_criar_carona', methods=['POST'])
 def redireciona_criar_carona():
     dados = {}
     dados['url_form'] = url_for('rota_inserir')
     return render_template('criar_carona.html')
+
+
 @app.route('/rota_inserir', methods=['POST'])
 def rota_inserir():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
     data = adicionar_rota(request)
     return render_template('index.html', dados=dados)
+
+@app.route('/redireciona_busca_carona', methods=['POST'])
+def redireciona_busca_carona():
+    dados = {}
+    print("redireciona_busca_carona")
+    dados['url_form'] = url_for('rota_inserir')
+    return render_template('buscar_carona.html')
+
+@app.route('/buscar_carona', methods=['POST'])
+def rota_buscar():
+    data = buscar_carona(request)
+    print("passou por busca rota")
+    print(data[0].cidade_origem)
+    print(len(data))
+    return render_template('buscar_carona.html', resultado=data)
 
 '''@app.route('/usuario/inserir', methods=['POST'])
 def usuario_inserir():
