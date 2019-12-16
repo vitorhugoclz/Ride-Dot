@@ -50,7 +50,7 @@ def rota_inserir():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
     data = adicionar_rota(request, usuario_logado.id)
-    return redirect('/')
+    return redirect('/inicio')
 
 @app.route('/redireciona_busca_carona', methods=['POST'])
 def redireciona_busca_carona():
