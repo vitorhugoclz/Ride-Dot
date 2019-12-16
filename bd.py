@@ -130,13 +130,18 @@ def adicionar_rota(request:object)->Rota:
 ##########################################################
 
 def buscar_carona(request:object):
-
+    def converteLista(data, cidade_destino):
+        lista = list()
+        for iten in data:
+            if iten.cidade_destino == cidade_destino:
+                lista.append(iten)
+        return lista
     cidade_origem = request.form['cidade_origem'].lower()
     cidade_destino =  request.form['cidade_destino'].lower()
 
-    data = Rota.select().where(Rota.cidade_origem == cidade_origem and Rota.cidade_destino == cidade_destino)
+    data = Rota.select().where(Rota.cidade_origem == cidade_origem)
 
-    return data
+    return converteLista(data, cidade_destino)
 
 def salvar_inscricao_rota(id:int):
     '''comentario de inscricao'''
