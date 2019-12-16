@@ -70,9 +70,9 @@
                         <th style="color: #dddddd">usuario_ofertante</th>
                 </tr>
                 </thead>
-                    <tbody>
+                    <tbody bgcolor="#f0f8ff">
                     {% for iten in resultado %}
-                        <tr>
+                    <tr>
                         <td>
                             <a class="btn btn-sm btn-outline-secondary"
                                    href="{{ url_for("salvar_inscricao" ,id=iten.id) }}" role="button">
