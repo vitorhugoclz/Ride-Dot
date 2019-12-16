@@ -13,6 +13,19 @@ def index():
     dados['url_buscar'] = url_for('redireciona_busca_carona')
     return render_template('index.html', dados=dados)
 
+@app.route('/cadastrar')
+def cadastrar():
+    return render_template('cadastro.html')
+
+@app.route('/criar/rota')
+def chama_criar_rota():
+    return render_template('criar_carona.html')
+
+
+@app.route('/buscar/rota')
+def chama_buscar_rota():
+    return render_template('buscar_carona.html')
+
 
 @app.route('/redireciona_criar_carona', methods=['POST'])
 def redireciona_criar_carona():
@@ -47,16 +60,14 @@ def salvar_inscricao(id):
     return redirect(url_for('index'))
 
 
-'''@app.route('/usuario/inserir', methods=['POST'])
+@app.route('/usuario_inserir', methods=['POST'])
 def usuario_inserir():
     dados = {}
     dados['url_form'] = url_for('usuario_inserir')
     data = adicionar_usuario(request)
-    if data:
-        flash(f'Usuario: {data.nome} criado com sucesso')
-    return render_template('usuario_form.html', dados=dados)
+    return redirect('/')
 
-@app.route('/login', methods=['POST'])
+'''@app.route('/login', methods=['POST'])
 def usuario_login():
     usuario_logado = verificar_login(request)
     dados = {}
