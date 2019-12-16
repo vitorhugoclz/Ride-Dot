@@ -16,6 +16,10 @@ def index():
     print(inscrita)
     return render_template('index.html', dados=dados, ofertadas=ofertadas, inscrita=inscrita)
 
+@app.route('/logar')
+def logar():
+    return render_template('login.html')
+
 @app.route('/cadastrar')
 def cadastrar():
     return render_template('cadastro.html')
@@ -35,7 +39,6 @@ def redireciona_criar_carona():
     dados = {}
     dados['url_form'] = url_for('rota_inserir')
     return render_template('criar_carona.html')
-
 
 @app.route('/rota_inserir', methods=['POST'])
 def rota_inserir():
@@ -68,9 +71,9 @@ def usuario_inserir():
     dados = {}
     dados['url_form'] = url_for('usuario_inserir')
     data = adicionar_usuario(request)
-    return redirect('/')
+    return redirect('/logar')
 
-'''@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def usuario_login():
     usuario_logado = verificar_login(request)
     dados = {}
@@ -79,10 +82,10 @@ def usuario_login():
         dados['url_form'] = url_for('usuario_login')
         print("logou")
         dados['url_form'] = url_for('usuario_inserir')
-        return render_template('usuario_form.html', dados=dados)
+        return redirect('/')
     else:
         print("nao logou")
-        return render_template('usuario_form.html', dados=dados)'''
+        return redirect('/logar')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
