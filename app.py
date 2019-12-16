@@ -27,7 +27,7 @@ def logar():
 
 @app.route('/cadastrar')
 def cadastrar():
-    return render_template('cadastro.html', flag=True)
+    return render_template('cadastro.html', flag=False)
 
 @app.route('/criar/rota')
 def chama_criar_rota():
@@ -37,7 +37,6 @@ def chama_criar_rota():
 @app.route('/buscar/rota')
 def chama_buscar_rota():
     return render_template('buscar_carona.html', flag=True)
-
 
 @app.route('/redireciona_criar_carona', methods=['POST'])
 def redireciona_criar_carona():

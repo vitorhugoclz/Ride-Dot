@@ -199,3 +199,4 @@ if __name__ == '__main__':
         delete_banco_dados()
     create_tables()
     populate_db.criar_informacoes()
+
