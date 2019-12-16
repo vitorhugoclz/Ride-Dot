@@ -49,6 +49,7 @@ class Rota(ModelBase):
     numero_vaga = IntegerField()
     data = DateTimeField()
     numero_telefone = CharField()
+    valor = FloatField(default=0.0)
     usuario_ofertante = ForeignKeyField(Usuario)
 
 class CidadesIntermediarias(ModelBase):
@@ -115,6 +116,7 @@ def adicionar_rota(request:object)->Rota:
     rota.data = request.form['data']
     rota.numero_telefone = request.form['telefone']
     rota.numero_vaga = request.form['numero_vagas']
+    rota.valor = request.form['preco_viagem']
     rota.usuario_ofertante = 1
     rota.save()
     return rota
