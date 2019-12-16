@@ -8,12 +8,17 @@ Kazakhstan number one exporter of potassium"""
 usuario_logado = None
 @app.route('/')
 def index():
+    global  usuario_logado
+    usuario_logado = None
+    return render_template('login.html')
+
+@app.route('/inicio')
+def inicio():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
     dados['url_buscar'] = url_for('redireciona_busca_carona')
-    ofertadas = buscar_rota_oferecida()
-    inscrita = buscar_rota_inscrita()
-    print(inscrita)
+    ofertadas = buscar_rota_oferecida(usuario_logado.id)
+    inscrita = buscar_rota_inscrita(usuario_logado.id)
     return render_template('index.html', dados=dados, ofertadas=ofertadas, inscrita=inscrita)
 
 @app.route('/logar')
@@ -44,7 +49,7 @@ def redireciona_criar_carona():
 def rota_inserir():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
-    data = adicionar_rota(request)
+    data = adicionar_rota(request, usuario_logado.id)
     return redirect('/')
 
 @app.route('/redireciona_busca_carona', methods=['POST'])
@@ -62,8 +67,8 @@ def rota_buscar():
 @app.route('/confirmar_inscricao/<int:id>')
 def salvar_inscricao(id):
     id = int(id)
-    data = salvar_inscricao_rota(id)
-    return redirect(url_for('index'))
+    data = salvar_inscricao_rota(id, usuario_logado.id)
+    return redirect(url_for('inicio'))
 
 
 @app.route('/usuario_inserir', methods=['POST'])
@@ -75,17 +80,16 @@ def usuario_inserir():
 
 @app.route('/login', methods=['POST'])
 def usuario_login():
+    global  usuario_logado
     usuario_logado = verificar_login(request)
     dados = {}
     if usuario_logado:
         dados = {}
         dados['url_form'] = url_for('usuario_login')
-        print("logou")
         dados['url_form'] = url_for('usuario_inserir')
-        return redirect('/')
+        return redirect('/inicio')
     else:
-        print("nao logou")
-        return redirect('/logar')
+        return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
