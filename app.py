@@ -10,7 +10,7 @@ usuario_logado = None
 def index():
     global  usuario_logado
     usuario_logado = None
-    return render_template('login.html')
+    return render_template('login.html', flag=False)
 
 @app.route('/inicio')
 def inicio():
@@ -19,7 +19,7 @@ def inicio():
     dados['url_buscar'] = url_for('redireciona_busca_carona')
     ofertadas = buscar_rota_oferecida(usuario_logado.id)
     inscrita = buscar_rota_inscrita(usuario_logado.id)
-    return render_template('index.html', dados=dados, ofertadas=ofertadas, inscrita=inscrita)
+    return render_template('index.html', dados=dados, ofertadas=ofertadas, inscrita=inscrita, flag=True)
 
 @app.route('/logar')
 def logar():
@@ -27,23 +27,23 @@ def logar():
 
 @app.route('/cadastrar')
 def cadastrar():
-    return render_template('cadastro.html')
+    return render_template('cadastro.html', flag=True)
 
 @app.route('/criar/rota')
 def chama_criar_rota():
-    return render_template('criar_carona.html')
+    return render_template('criar_carona.html', flag=True)
 
 
 @app.route('/buscar/rota')
 def chama_buscar_rota():
-    return render_template('buscar_carona.html')
+    return render_template('buscar_carona.html', flag=True)
 
 
 @app.route('/redireciona_criar_carona', methods=['POST'])
 def redireciona_criar_carona():
     dados = {}
     dados['url_form'] = url_for('rota_inserir')
-    return render_template('criar_carona.html')
+    return render_template('criar_carona.html', flag=True)
 
 @app.route('/rota_inserir', methods=['POST'])
 def rota_inserir():
@@ -56,12 +56,12 @@ def rota_inserir():
 def redireciona_busca_carona():
     dados = {}
     dados['url_form'] = url_for('rota_inserir')
-    return render_template('buscar_carona.html')
+    return render_template('buscar_carona.html', flag=True)
 
 @app.route('/buscar_carona', methods=['POST'])
 def rota_buscar():
     data = buscar_carona(request)
-    return render_template('buscar_carona.html', resultado=data)
+    return render_template('buscar_carona.html', resultado=data, flag=True)
 
 
 @app.route('/confirmar_inscricao/<int:id>')

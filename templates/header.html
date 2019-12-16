@@ -1,5 +1,6 @@
 <div class="header">
         <div class="container">
+            {% if flag %}
             <nav class="navbar navbar-inverse" role="navigation">
                 <div class="navbar-header">
                     <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
@@ -14,11 +15,14 @@
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a class="btn btn-sm btn-outline-secondary"
-                                   href="{{ url_for("index") }}" role="button">Inicio</a></li>
+                                   href="{{ url_for("inicio") }}" role="button">Inicio</a></li>
                         <li><a class="btn btn-sm btn-outline-secondary"
                                    href="{{ url_for("chama_criar_rota") }}" role="button">Criar Rota</a></li>
                         <li><a class="btn btn-sm btn-outline-secondary"
                                    href="{{ url_for("chama_buscar_rota") }}" role="button">Buscar Rota</a></li>
+                        <li><a class="btn btn-sm btn-outline-secondary"
+                                   href="{{ url_for("index") }}" role="button">Sair</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
