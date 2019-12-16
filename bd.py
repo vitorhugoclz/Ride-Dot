@@ -78,7 +78,7 @@ def verificar_login(request:object):
     data = Usuario.select().where(Usuario.nome_usuario == nome_usuario)
     if data:
         if data[0].senha != senha:
-            data = None
+            return None
         return data[0]
     return None
 
@@ -199,4 +199,3 @@ if __name__ == '__main__':
         delete_banco_dados()
     create_tables()
     populate_db.criar_informacoes()
-
