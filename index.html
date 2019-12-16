@@ -8,99 +8,92 @@
             <div class="text-content">
                 <h2><em>RideDot</em></h2>
                 <p>Caronas de confiança para o seu destino</p>
-                <div class="primary-white-button">
-                    <form action="{{ dados['url_form'] }}" method="post">
-                        <button type="submit" class="btn btn-primary btn-salvar">Oferecer carona</button>
-                    </form>
-                </div>
-                <div class="primary-white-button">
-                    <form action="{{ dados['url_buscar'] }}" method="post">
-                        <button type="submit" class="btn btn-primary btn-salvar">Buscar Carona</button>
-                    </form>
-                </div>
+                <form action="{{ dados['url_form'] }}" method="post">
+                    <div class="form-row">
+                        <span class="col-md-5"></span>
+                        <button type="submit" class="btn btn-primary btn-salvar col-md-2">Oferecer carona</button>
+                    </div>
+                </form>
+                <br><br><br>
+                <form action="{{ dados['url_buscar'] }}" method="post">
+                    <div class="form-row">
+                        <span class="col-md-5"></span>
+                        <button type="submit" class="btn btn-primary btn-salvar col-md-2">Buscar carona</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <section id="about" class="page-section">
         <div class="container" >
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="service-item">
-                        <div class="icon">
-                            <img src="../static/img/service_icon_01.png" alt="">
-                        </div>
-                        <h4>Registro</h4>
-                        <div class="line-dec"></div>
-                        <p>Cadastre-se no nosso site para procurar ou oferecer caronas</p>
-                        <div class="primary-blue-button">
-                            <a href="#" class="scroll-link" data-id="portfolio">Cadastre-se</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="service-item">
-                        <div class="icon">
-                            <img src="../static/img/service_icon_02.png" alt="">
-                        </div>
-                        <h4>Notificações</h4>
-                        <div class="line-dec"></div>
-                        <p>Faça parte da nossa lista de transmissão para receber as notificações de caronas pra você!</p>
-                        <div class="primary-blue-button">
-                            <a href="#" class="scroll-link" data-id="portfolio">Registre seu Email</a>
-                        </div>
-                    </div>
+        <h3 style="color:#FFFFFF; text-align: center;"><em>Caronas Ofertadas</em></h3>
+            {% if ofertadas %}
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                        <th style="color: #dddddd">cidade_origem</th>
+                        <th style="color: #dddddd">cidade_destino</th>
+                        <th style="color: #dddddd">numero_vaga</th>
+                        <th style="color: #dddddd">data</th>
+                        <th style="color: #dddddd">numero_telefone</th>
+                        <th style="color: #dddddd">usuario_ofertante</th>
+                        <th style="color: #dddddd">valor</th>
+                </tr>
+                </thead>
+                    <tbody bgcolor="#f0f8ff">
+                    {% for iten in ofertadas %}
+                    <tr>
+                        <td>{{ iten.cidade_origem }}</td>
+                        <td>{{ iten.cidade_destino }}</td>
+                        <td>{{ iten.numero_vaga }}</td>
+                        <td>{{ iten.data }}</td>
+                        <td>{{ iten.numero_telefone }}</td>
+                        <td>{{ iten.usuario_ofertante }}</td>
+                        <td>{{ iten.valor }}</td>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        {% endif %}
         </div>
     </section>
 
-    <div id="contact-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <h4>Contate-nos</h4>
-                        <div class="line-dec"></div>
-                        <p>Envie uma mensagem em caso de dúvidas ou sugestões</p>
-                        <div class="pop-button">
-                            <h4>Envie uma mensagem</h4>
-                        </div>
-                    </div>
-                </div>
+    <div class="parallax-content baner-content3" id="home" >
+        <div class="container" >
+        <h3 style="color:#FFFFFF"><em>Caronas Inscritas</em></h3>
+            {% if inscrita %}
+            <div class="table-responsive col-md-12">
+                <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                        <th style="color: #dddddd">cidade_origem</th>
+                        <th style="color: #dddddd">cidade_destino</th>
+                        <th style="color: #dddddd">numero_vaga</th>
+                        <th style="color: #dddddd">data</th>
+                        <th style="color: #dddddd">numero_telefone</th>
+                        <th style="color: #dddddd">usuario_ofertante</th>
+                        <th style="color: #dddddd">valor</th>
+                </tr>
+                </thead>
+                    <tbody bgcolor="#f0f8ff">
+                    {% for iten in inscrita %}
+                    <tr>
+                        <td>{{ iten.cidade_origem }}</td>
+                        <td>{{ iten.cidade_destino }}</td>
+                        <td>{{ iten.numero_vaga }}</td>
+                        <td>{{ iten.data }}</td>
+                        <td>{{ iten.numero_telefone }}</td>
+                        <td>{{ iten.usuario_ofertante }}</td>
+                        <td>{{ iten.valor }}</td>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="pop">
-                        <span>✖</span>
-                        <form id="contact" action="#" method="post">
-                            <div class="row">
-                                <div class="col-md-12">
-                                  <fieldset>
-                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                  <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                  <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required></textarea>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                  <fieldset>
-                                    <button type="submit" id="form-submit" class="btn">Send Message</button>
-                                  </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        {% endif %}
         </div>
     </div>
-
 {% endblock %}

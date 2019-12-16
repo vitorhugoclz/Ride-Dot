@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>RideDot</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../static/css/fontAwesome.css">
+        <link rel="stylesheet" href="../static/css/hero-slider.css">
+        <link rel="stylesheet" href="../static/css/owl-carousel.css">
+        <link rel="stylesheet" href="../static/css/templatemo-style.css">
+        <link rel="stylesheet" href="../static/css/lightbox.css">
+        <link rel="stylesheet" href="../static/css/margem_form.css">
+
+        <script src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+
+  <body>
+{% include 'header.html'%}
+<div class="parallax-content baner-content" id="cria_cadastro" >
+    <div class="container">
+    <form action="/usuario_inserir" method="post">
+    <fieldset>
+    <div class="form-row">
+        <div class="form-group col-md-6 mb-3 m">
+            <label class="" for="nome"><span style="color: #dddddd">Nome</span></label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Fulano da Silva" required>
+        </div>
+        <div class="form-group col-md-3 mb-2">
+            <label for="nome_usuario"><span style="color: #dddddd">Nome de Usuário</span></label>
+            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" placeholder="fulano0909" required>
+        </div>
+        <div class="form-group col-md-3 mb-2">
+            <label for="cpf"><span style="color: #dddddd">CPF</span></label>
+            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="00000000000" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 mb-3">
+            <label for="email"><span style="color: #dddddd">Email</span></label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="fulano@email.com" required>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label for="senha"><span style="color: #dddddd">Senha</span></label>
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="***" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <span class="col-md-3 mb-1"></span>
+        <div class="form-group col-md-6 mb-3">
+            <label for="numero_telefone"><span style="color: #dddddd">Insira o telefone para contato</span></label>
+            <input type="text" id="numero_telefone" name="numero_telefone" class="form-control" placeholder="(00) 0000-0000" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <span class="col-md-4 mb-2"></span>
+        <button type="submit" class="btn btn-primary btn-salvar col-md-4 mb-2"><span style="color: #dddddd">Cadastar</span></button>
+    </div>
+    </fieldset>
+    </form>
+    </div>
+    </div>
+   {% include 'template.html' %}
+  </body>
+</html>
