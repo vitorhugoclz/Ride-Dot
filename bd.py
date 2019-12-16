@@ -79,7 +79,8 @@ def verificar_login(request:object):
     if data:
         if data[0].senha != senha:
             data = None
-    return data
+        return data[0]
+    return None
 
 ##########################################################
 # Funcoes relacionados ao usuario
@@ -107,7 +108,7 @@ def adicionar_usuario(request:object)->Usuario:
 # Funcoes adicionar rota
 ##########################################################
 @database.atomic()
-def adicionar_rota(request:object)->Rota:
+def adicionar_rota(request:object, usuario_ofertante)->Rota:
     '''' armazena uma rota no banco de dados '''
     rota = Rota()
     rota.cidade_destino = request.form['cidade_destino'].lower()
@@ -116,7 +117,7 @@ def adicionar_rota(request:object)->Rota:
     rota.numero_telefone = request.form['telefone']
     rota.numero_vaga = request.form['numero_vagas']
     rota.valor = request.form['preco_viagem']
-    rota.usuario_ofertante = 1
+    rota.usuario_ofertante = usuario_ofertante
     rota.save()
     return rota
 ##########################################################
@@ -142,7 +143,7 @@ def buscar_carona(request:object):
 
     return converteLista(data, cidade_destino)
 
-def salvar_inscricao_rota(id:int):
+def salvar_inscricao_rota(id:int, usuario_id):
     '''comentario de inscricao'''
     data = Rota.select().where(Rota.id == id)
     if data:
@@ -151,11 +152,11 @@ def salvar_inscricao_rota(id:int):
             data[0].save()
             rota_usuario = RotaUsuario()
             rota_usuario.rota_id = id
-            rota_usuario.usuario_id = 9
+            rota_usuario.usuario_id = usuario_id
             rota_usuario.save()
 
 
-def buscar_rota_inscrita():
+def buscar_rota_inscrita(usuario_id):
     def fazer_lista_rota(data):
         lista = list()
         for i in data:
@@ -163,13 +164,13 @@ def buscar_rota_inscrita():
             for j in iten:
                 lista.append(j)
         return lista
-    data = RotaUsuario.select().where(RotaUsuario.usuario_id == 1)
+    data = RotaUsuario.select().where(RotaUsuario.usuario_id == usuario_id)
     data = fazer_lista_rota(data)
     return data
 
 
-def buscar_rota_oferecida():
-    data = Rota().select().where(Rota.usuario_ofertante == 1)
+def buscar_rota_oferecida(usuario_ofertante):
+    data = Rota().select().where(Rota.usuario_ofertante == usuario_ofertante)
     return data
 ##########################################################
 # fim funcoes buscar carona
