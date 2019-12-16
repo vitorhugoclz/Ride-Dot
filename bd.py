@@ -62,7 +62,6 @@ class RotaUsuario(ModelBase):
     rota_id = ForeignKeyField(Rota)
     vagas_pedidas = IntegerField(default=1)
 
-
 def create_tables():
     """cria as tabelas do banco de dados"""
     database.connect()
@@ -156,10 +155,22 @@ def salvar_inscricao_rota(id:int):
             rota_usuario.save()
 
 
-def buscar_rota_usuario():
-    data = RotaUsuario.select().where(RotaUsuario.usuario_id == 9)
+def buscar_rota_inscrita():
+    def fazer_lista_rota(data):
+        lista = list()
+        for i in data:
+            iten = Rota.select().where(Rota.id == i.rota_id)
+            for j in iten:
+                lista.append(j)
+        return lista
+    data = RotaUsuario.select().where(RotaUsuario.usuario_id == 1)
+    data = fazer_lista_rota(data)
     return data
 
+
+def buscar_rota_oferecida():
+    data = Rota().select().where(Rota.usuario_ofertante == 1)
+    return data
 ##########################################################
 # fim funcoes buscar carona
 ##########################################################

@@ -11,7 +11,10 @@ def index():
     dados = {}
     dados['url_form'] = url_for('redireciona_criar_carona')
     dados['url_buscar'] = url_for('redireciona_busca_carona')
-    return render_template('index.html', dados=dados)
+    ofertadas = buscar_rota_oferecida()
+    inscrita = buscar_rota_inscrita()
+    print(inscrita)
+    return render_template('index.html', dados=dados, ofertadas=ofertadas, inscrita=inscrita)
 
 @app.route('/cadastrar')
 def cadastrar():
