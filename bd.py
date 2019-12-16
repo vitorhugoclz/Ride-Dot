@@ -133,7 +133,7 @@ def buscar_carona(request:object):
     def converteLista(data, cidade_destino):
         lista = list()
         for iten in data:
-            if iten.cidade_destino == cidade_destino:
+            if iten.cidade_destino == cidade_destino and iten.numero_vaga > 0:
                 lista.append(iten)
         return lista
     cidade_origem = request.form['cidade_origem'].lower()
@@ -146,7 +146,6 @@ def buscar_carona(request:object):
 def salvar_inscricao_rota(id:int):
     '''comentario de inscricao'''
     data = Rota.select().where(Rota.id == id)
-    print("chegou no BD")
     if data:
         if data[0].numero_vaga > 0 and data[0].numero_vaga >= 1:
             data[0].numero_vaga = data[0].numero_vaga - 1
@@ -155,6 +154,11 @@ def salvar_inscricao_rota(id:int):
             rota_usuario.rota_id = id
             rota_usuario.usuario_id = 9
             rota_usuario.save()
+
+
+def buscar_rota_usuario():
+    data = RotaUsuario.select().where(RotaUsuario.usuario_id == 9)
+    return data
 
 ##########################################################
 # fim funcoes buscar carona
